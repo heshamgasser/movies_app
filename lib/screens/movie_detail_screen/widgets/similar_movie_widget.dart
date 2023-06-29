@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/remote/api_manager.dart';
-import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
-import 'package:movies_app/screens/home_screen/widgets/movie_poster_widget.dart';
 import '../../../componant/constant.dart';
 import '../../../models/argument_model.dart';
 import '../../../styles/app_color.dart';
+import '../../home_screen/widgets/movie_poster_widget.dart';
+import '../movie_detail_screen.dart';
 
-class TopRatedWidget extends StatelessWidget {
-  const TopRatedWidget({super.key});
+class SimilarMoviesWidget extends StatelessWidget {
+  int movieId;
+
+  SimilarMoviesWidget(this.movieId);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiManager.getTopRatedMovies(),
+      future: ApiManager.getSimilarMovies(movieId),
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Column(
+            children: [
+              Text('Error'),
+            ],
+          );
+        }
+
         return Container(
           height: 187.h,
           color: containerColor,
@@ -22,7 +38,7 @@ class TopRatedWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Recomended',
+                'More Like This',
                 style: TextStyle(color: Colors.white, fontSize: 15.sp),
               ),
               SizedBox(height: 5.h),
@@ -32,22 +48,18 @@ class TopRatedWidget extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return MoviePosterWidget(
                         posterPath:
-                            '$IMAGE_BASE_URL${snapshot.data?.results?[index].backdropPath}' ??
+                            '$IMAGE_BASE_URL${snapshot.data?.results?[index].posterPath}' ??
                                 '',
                         voteText:
-                            '${snapshot.data?.results?[index].voteAverage}' ??
-                                '',
+                            '${snapshot.data?.results?[index].voteAverage ?? ''}',
                         title: snapshot.data?.results?[index].title ?? '',
-                        releaseDate:
-                            snapshot.data?.results?[index].releaseDate ?? '',
+                        releaseDate: snapshot.data?.results?[index].releaseDate ?? '',
                         onTapped: () {
                           Navigator.pushReplacementNamed(
-                            context,
-                            MovieDetailScreen.routeName,
-                            arguments: ArgumentModel(
-                              movieId: snapshot.data?.results?[index].id,
-                            ),
-                          );
+                              arguments: ArgumentModel(
+                                  movieId: snapshot.data?.results?[index].id),
+                              context,
+                              MovieDetailScreen.routeName);
                         },
                       );
                     },

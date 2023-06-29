@@ -19,13 +19,13 @@ class MoviePosterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        onTapped();
-      },
-      child: Stack(
-        children: [
-          Container(
+    return Stack(
+      children: [
+        InkWell(
+          onTap: () {
+            onTapped();
+          },
+          child: Container(
             color: containerColor,
             width: 97.w,
             height: 187.h,
@@ -62,15 +62,15 @@ class MoviePosterWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.zero,
-            margin: EdgeInsets.zero,
-            width: 27.w ,
-            height: 36.h,
-            child: Icon(Icons.bookmark_add, color: Colors.blue,),
-          ),
-        ],
-      ),
+        ),
+        Container(
+          padding: EdgeInsets.zero,
+          margin: EdgeInsets.zero,
+          width: 27.w ,
+          height: 36.h,
+          child: Icon(Icons.bookmark_add, color: Color(0xFF514F4F).withOpacity(.87), size: 36.h,),
+        ),
+      ],
     );
   }
 }

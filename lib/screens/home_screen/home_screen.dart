@@ -36,9 +36,9 @@ class HomeScreen extends StatelessWidget {
             return ListView(
               children: [
                 PopularMoviesWidget(snapshot: snapshot),
-                SizedBox(height: 100.h),
+                SizedBox(height: 80.h),
                 ComingSoonMovies(),
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 TopRatedWidget(),
                 // SizedBox(height: 5.h)
               ],

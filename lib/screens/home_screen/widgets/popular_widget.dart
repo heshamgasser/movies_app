@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/home_provider.dart';
+import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../componant/constant.dart';
 import '../../../models/PopularMoviesModel.dart';
@@ -22,7 +23,7 @@ class PopularMoviesWidget extends StatelessWidget {
         var pro = Provider.of<HomeProvider>(context);
         return Stack(
           clipBehavior: Clip.none,
-          alignment: Alignment.bottomLeft,
+          alignment: Alignment.center,
           children: [
             CarouselSlider(
               items: snapshot.data?.results?.map(
@@ -53,23 +54,43 @@ class PopularMoviesWidget extends StatelessWidget {
                 },
               ),
             ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.play_circle,
+                size: 60.r,
+                color: Colors.white,
+              ),
+            ),
             Positioned(
-              bottom: MediaQuery.of(context).size.height * -.1,
+              bottom: -60.h,
+              left: 5.w,
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 129.w,
                     height: 199.h,
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fill,
-                      imageUrl:
-                          '$IMAGE_BASE_URL${snapshot.data?.results?[pro.selectedMovie].posterPath}' ??
-                              '',
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress)),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: CachedNetworkImage(
+                            fit: BoxFit.fill,
+                            imageUrl:
+                                '$IMAGE_BASE_URL${snapshot.data?.results?[pro.selectedMovie].posterPath}' ??
+                                    '',
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress)),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        VoteWidget(
+                            '${snapshot.data?.results?[pro.selectedMovie].voteAverage}'),
+                      ],
                     ),
                   ),
                   InkWell(
@@ -79,30 +100,12 @@ class PopularMoviesWidget extends StatelessWidget {
                     child: Icon(Icons.bookmark_add_rounded,
                         size: 30, color: Colors.blue),
                   ),
-                  Positioned(
-                      bottom: 5.h,
-                      left: 5.w,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            size: 20,
-                            color: Colors.orangeAccent,
-                          ),
-                          SizedBox(width: 5.w),
-                          Text(
-                            '${snapshot.data?.results?[pro.selectedMovie].voteAverage}' ??
-                                '',
-                            style: TextStyle(color: Colors.orangeAccent),
-                          )
-                        ],
-                      )),
                 ],
               ),
             ),
             Positioned(
-              bottom: MediaQuery.of(context).size.height * -.15,
-              left: MediaQuery.of(context).size.width * .35,
+              bottom: MediaQuery.of(context).size.height * -.15.h,
+              left: MediaQuery.of(context).size.width * .4.w,
               child: Container(
                 width: MediaQuery.of(context).size.width * .6,
                 height: MediaQuery.of(context).size.height * .2,
@@ -115,7 +118,7 @@ class PopularMoviesWidget extends StatelessWidget {
                       snapshot.data?.results?[pro.selectedMovie].title ?? '',
                       style: TextStyle(color: Colors.white, fontSize: 14.sp),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     Text(
                       'Release Date: ${snapshot.data?.results?[pro.selectedMovie].releaseDate}' ??
                           '',

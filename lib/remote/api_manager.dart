@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/componant/constant.dart';
 import 'package:movies_app/models/ComingSoonModel.dart';
+import 'package:movies_app/models/MovieDetailsModel.dart';
 import 'package:movies_app/models/NewReleaseMovies.dart';
 
 import 'package:movies_app/models/PopularMoviesModel.dart';
+import 'package:movies_app/models/SimilarMoviesModel.dart';
 import 'package:movies_app/models/TopRatedMoviesModel.dart';
 
 
@@ -60,4 +62,27 @@ static Future<ComingSoonModel> getComingSoonMovies () async{
   return comingSoonModel;
 }
 
+static Future<MovieDetailsModel> getMovieDetails (int movieId) async{
+  Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId' , {
+    'api_key' : API_KEY,
+  },);
+
+  http.Response response = await http.get(url);
+  var json = jsonDecode(response.body);
+
+  MovieDetailsModel movieDetailsModel = MovieDetailsModel.fromJson(json);
+  return movieDetailsModel;
+}
+
+static Future<SimilarMoviesModel> getSimilarMovies (int movieId) async{
+  Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId$SIMILAR' , {
+    'api_key' : API_KEY,
+  },);
+
+  http.Response response = await http.get(url);
+  var json = jsonDecode(response.body);
+
+  SimilarMoviesModel similarMoviesModel = SimilarMoviesModel.fromJson(json);
+  return similarMoviesModel;
+}
 }
