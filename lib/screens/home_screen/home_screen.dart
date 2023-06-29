@@ -33,15 +33,14 @@ class HomeScreen extends StatelessWidget {
               );
             }
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            return ListView(
               children: [
                 PopularMoviesWidget(snapshot: snapshot),
                 SizedBox(height: 100.h),
                 ComingSoonMovies(),
                 SizedBox(height: 10.h),
                 TopRatedWidget(),
-                SizedBox(height: 5.h)
+                // SizedBox(height: 5.h)
               ],
             );
           },

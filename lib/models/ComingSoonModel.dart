@@ -6,13 +6,14 @@
 
 class ComingSoonModel {
   ComingSoonModel({
-      this.dates,
+    this.dates,
     this.status_code,
     this.status_message,
-      this.page, 
-      this.results, 
-      this.totalPages, 
-      this.totalResults,});
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+  });
 
   ComingSoonModel.fromJson(dynamic json) {
     dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
@@ -28,6 +29,7 @@ class ComingSoonModel {
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
+
   Dates? dates;
   int? status_code;
   String? status_message;
@@ -51,7 +53,6 @@ class ComingSoonModel {
     map['total_results'] = totalResults;
     return map;
   }
-
 }
 
 /// adult : false
@@ -71,20 +72,21 @@ class ComingSoonModel {
 
 class Results {
   Results({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   Results.fromJson(dynamic json) {
     adult = json['adult'];
@@ -102,6 +104,7 @@ class Results {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
+
   bool? adult;
   String? backdropPath;
   List<num>? genreIds;
@@ -135,7 +138,6 @@ class Results {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }
 
 /// maximum : "2023-07-26"
@@ -143,13 +145,15 @@ class Results {
 
 class Dates {
   Dates({
-      this.maximum, 
-      this.minimum,});
+    this.maximum,
+    this.minimum,
+  });
 
   Dates.fromJson(dynamic json) {
     maximum = json['maximum'];
     minimum = json['minimum'];
   }
+
   String? maximum;
   String? minimum;
 
@@ -159,5 +163,4 @@ class Dates {
     map['minimum'] = minimum;
     return map;
   }
-
 }

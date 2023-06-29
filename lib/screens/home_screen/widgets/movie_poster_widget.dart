@@ -9,62 +9,68 @@ class MoviePosterWidget extends StatelessWidget {
   String voteText;
   String title;
   String releaseDate;
+  Function onTapped;
 
   MoviePosterWidget(
       {required this.posterPath,
       required this.voteText,
       required this.title,
-      required this.releaseDate});
+      required this.releaseDate, required this.onTapped});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          color: containerColor,
-          width: 97.w,
-          height: 128.h,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: CachedNetworkImage(
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                  imageUrl: posterPath,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress),
+    return InkWell(
+      onTap: () {
+        onTapped();
+      },
+      child: Stack(
+        children: [
+          Container(
+            color: containerColor,
+            width: 97.w,
+            height: 187.h,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: CachedNetworkImage(
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                    imageUrl: posterPath,
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-              ),
-              SizedBox(height: 5.h),
-              VoteWidget('${voteText}' ?? ''),
-              SizedBox(height: 5.h),
-              Text(
-                title,
-                style: TextStyle(fontSize: 10.sp, color: Colors.white),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 5.h),
-              Text(
-                releaseDate,
-                style: TextStyle(fontSize: 10.sp, color: Colors.grey),
-              )
-            ],
+                SizedBox(height: 5.h),
+                VoteWidget('${voteText}' ?? ''),
+                SizedBox(height: 5.h),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 10.sp, color: Colors.white),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  releaseDate,
+                  style: TextStyle(fontSize: 10.sp, color: Colors.grey),
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.zero,
-          margin: EdgeInsets.zero,
-          width: 27.w ,
-          height: 36.h,
-          child: Icon(Icons.bookmark_add),
-        ),
-      ],
+          Container(
+            padding: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
+            width: 27.w ,
+            height: 36.h,
+            child: Icon(Icons.bookmark_add, color: Colors.blue,),
+          ),
+        ],
+      ),
     );
   }
 }
