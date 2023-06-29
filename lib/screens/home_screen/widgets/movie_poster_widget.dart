@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import '../../../styles/app_color.dart';
 
@@ -21,8 +22,8 @@ class MoviePosterWidget extends StatelessWidget {
       children: [
         Container(
           color: containerColor,
-          width: MediaQuery.of(context).size.width * .3,
-          height: MediaQuery.of(context).size.height * .4,
+          width: 97.w,
+          height: 128.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -39,22 +40,29 @@ class MoviePosterWidget extends StatelessWidget {
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 5.h),
               VoteWidget('${voteText}' ?? ''),
-              SizedBox(height: 5),
+              SizedBox(height: 5.h),
               Text(
                 title,
-                style: TextStyle(fontSize: 10, color: Colors.white),
+                style: TextStyle(fontSize: 10.sp, color: Colors.white),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 5.h),
               Text(
                 releaseDate,
-                style: TextStyle(fontSize: 10, color: Colors.grey),
+                style: TextStyle(fontSize: 10.sp, color: Colors.grey),
               )
             ],
           ),
+        ),
+        Container(
+          padding: EdgeInsets.zero,
+          margin: EdgeInsets.zero,
+          width: 27.w ,
+          height: 36.h,
+          child: Icon(Icons.bookmark_add),
         ),
       ],
     );

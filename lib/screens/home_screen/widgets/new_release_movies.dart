@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import '../../../componant/constant.dart';
 import '../../../styles/app_color.dart';
@@ -16,7 +17,7 @@ class NewReleaseMovies extends StatelessWidget {
       builder: (context, snapshot) {
       return  Expanded(
         child: Container(
-          height: MediaQuery.of(context).size.height * .2,
+          height: 187.h,
           color: containerColor,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,

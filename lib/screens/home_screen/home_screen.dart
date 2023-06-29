@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/home_provider.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import 'package:movies_app/screens/home_screen/widgets/coming_soon_movies.dart';
@@ -36,21 +37,11 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 PopularMoviesWidget(snapshot: snapshot),
-                SizedBox(height: MediaQuery.of(context).size.height * .11),
-                Text(
-                  'Coming Soon',
-                  style: TextStyle(color: Colors.white),
-                ),
-                SizedBox(height: 5),
+                SizedBox(height: 100.h),
                 ComingSoonMovies(),
-                SizedBox(height: 10),
-                Text(
-                  'Recomended',
-                  style: TextStyle(color: Colors.white),
-                ),
-                SizedBox(height: 5),
+                SizedBox(height: 10.h),
                 TopRatedWidget(),
-                SizedBox(height: 5)
+                SizedBox(height: 5.h)
               ],
             );
           },

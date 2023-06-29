@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/home_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../componant/constant.dart';
 import '../../../models/PopularMoviesModel.dart';
-
 
 class PopularMoviesWidget extends StatelessWidget {
   AsyncSnapshot<PopularMoviesModel> snapshot;
@@ -29,7 +29,7 @@ class PopularMoviesWidget extends StatelessWidget {
                 (e) {
                   return Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * .3,
+                    height: 290.h,
                     child: CachedNetworkImage(
                       width: double.infinity,
                       fit: BoxFit.fill,
@@ -58,8 +58,8 @@ class PopularMoviesWidget extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * .3,
-                    height: MediaQuery.of(context).size.height * .2,
+                    width: 129.w,
+                    height: 199.h,
                     child: CachedNetworkImage(
                       fit: BoxFit.fill,
                       imageUrl:
@@ -75,23 +75,26 @@ class PopularMoviesWidget extends StatelessWidget {
                   InkWell(
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
-                    onTap: () {
-
-                    },
-                    child: Icon(
-                      Icons.bookmark_add_rounded,
-                      size: 30,
-                      color: Colors.blue
-                    ),
+                    onTap: () {},
+                    child: Icon(Icons.bookmark_add_rounded,
+                        size: 30, color: Colors.blue),
                   ),
                   Positioned(
-                      bottom: 5,
-                      left: 5,
+                      bottom: 5.h,
+                      left: 5.w,
                       child: Row(
                         children: [
-                          Icon(Icons.star, size: 20, color: Colors.orangeAccent,),
-                          SizedBox(width: 5),
-                          Text('${snapshot.data?.results?[pro.selectedMovie].voteAverage}' ?? '', style: TextStyle(color: Colors.orangeAccent),)
+                          Icon(
+                            Icons.star,
+                            size: 20,
+                            color: Colors.orangeAccent,
+                          ),
+                          SizedBox(width: 5.w),
+                          Text(
+                            '${snapshot.data?.results?[pro.selectedMovie].voteAverage}' ??
+                                '',
+                            style: TextStyle(color: Colors.orangeAccent),
+                          )
                         ],
                       )),
                 ],
@@ -110,12 +113,13 @@ class PopularMoviesWidget extends StatelessWidget {
                   children: [
                     Text(
                       snapshot.data?.results?[pro.selectedMovie].title ?? '',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Release Date: ${snapshot.data?.results?[pro.selectedMovie].releaseDate}' ?? '',
-                      style: TextStyle(color: Colors.white),
+                      'Release Date: ${snapshot.data?.results?[pro.selectedMovie].releaseDate}' ??
+                          '',
+                      style: TextStyle(color: Colors.white, fontSize: 10.sp),
                     ),
                   ],
                 ),
