@@ -16,7 +16,6 @@ class HomeLayout extends StatelessWidget {
         var homeProvider = Provider.of<HomeProvider>(context);
         return SafeArea(
           child: Scaffold(
-            
             backgroundColor: backgroundColor,
             bottomNavigationBar: BottomNavigationBar(
               showUnselectedLabels: true,

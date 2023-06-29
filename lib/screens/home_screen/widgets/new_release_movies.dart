@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/remote/api_manager.dart';
+import '../../../componant/constant.dart';
+import '../../../styles/app_color.dart';
 
-import '../../componant/constant.dart';
-import '../../styles/app_color.dart';
+
 
 class NewReleaseMovies extends StatelessWidget {
   const NewReleaseMovies({super.key});

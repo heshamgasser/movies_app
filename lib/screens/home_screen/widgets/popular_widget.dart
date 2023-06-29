@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/provider/home_provider.dart';
-import 'package:movies_app/screens/widgets/small_poster_widget.dart';
 import 'package:provider/provider.dart';
+import '../../../componant/constant.dart';
+import '../../../models/PopularMoviesModel.dart';
 
-import '../../componant/constant.dart';
-import '../../models/PopularMoviesModel.dart';
 
 class PopularMoviesWidget extends StatelessWidget {
   AsyncSnapshot<PopularMoviesModel> snapshot;

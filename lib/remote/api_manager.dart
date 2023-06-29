@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movies_app/componant/constant.dart';
+import 'package:movies_app/models/ComingSoonModel.dart';
 import 'package:movies_app/models/NewReleaseMovies.dart';
 
 import 'package:movies_app/models/PopularMoviesModel.dart';
 import 'package:movies_app/models/TopRatedMoviesModel.dart';
+
 
 
 class ApiManager {
@@ -41,6 +43,21 @@ static Future<TopRatedMoviesModel> getTopRatedMovies () async{
   var json = jsonDecode(response.body);
   TopRatedMoviesModel topRatedMoviesModel = TopRatedMoviesModel.fromJson(json);
   return topRatedMoviesModel;
+}
+
+
+static Future<ComingSoonModel> getComingSoonMovies () async{
+  Uri url = Uri.https(BASEURL, BASE_COMINGSOON_ENDPOINT, {
+    'api_key' : API_KEY,
+  },);
+
+  http.Response response = await http.get(url);
+
+  var json = jsonDecode(response.body);
+
+  ComingSoonModel comingSoonModel = ComingSoonModel.fromJson(json);
+
+  return comingSoonModel;
 }
 
 }
