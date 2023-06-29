@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
         return FutureBuilder(
           future: ApiManager.getPopularMovies(),
           builder: (context, snapshot) {
-
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -36,33 +35,22 @@ class HomeScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-               PopularMoviesWidget(snapshot: snapshot),
-
+                PopularMoviesWidget(snapshot: snapshot),
                 SizedBox(height: MediaQuery.of(context).size.height * .11),
-
                 Text(
                   'Coming Soon',
                   style: TextStyle(color: Colors.white),
                 ),
-
                 SizedBox(height: 5),
-                
                 ComingSoonMovies(),
-
-
                 SizedBox(height: 10),
-
                 Text(
                   'Recomended',
                   style: TextStyle(color: Colors.white),
                 ),
-
                 SizedBox(height: 5),
-
                 TopRatedWidget(),
-
                 SizedBox(height: 5)
-
               ],
             );
           },

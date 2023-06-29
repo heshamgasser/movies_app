@@ -1,9 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/remote/api_manager.dart';
+import 'package:movies_app/screens/home_screen/widgets/movie_poster_widget.dart';
 import '../../../componant/constant.dart';
 import '../../../styles/app_color.dart';
-
 
 class TopRatedWidget extends StatelessWidget {
   const TopRatedWidget({super.key});
@@ -13,60 +12,32 @@ class TopRatedWidget extends StatelessWidget {
     return FutureBuilder(
       future: ApiManager.getTopRatedMovies(),
       builder: (context, snapshot) {
-      return  Expanded(
-        child: Container(
-          height: MediaQuery.of(context).size.height * .2,
-          color: containerColor,
-          child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Stack(
-                  children: [
-                    Container(
-                      color: Colors.blueAccent,
-                      width: MediaQuery.of(context).size.width * .3,
-                      height: MediaQuery.of(context).size.height * .2,
-                      child: CachedNetworkImage(
-                        width: double.infinity,
-                        fit: BoxFit.fill,
-                        imageUrl: '$IMAGE_BASE_URL${snapshot.data?.results?[index].backdropPath}' ?? '',
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Center(
-                          child: CircularProgressIndicator(
-                              value: downloadProgress.progress),
-                        ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Icon(
-                          Icons.bookmark,
-                          size: 60,
-                          color: Colors.grey,
-                        ),
-                        Icon(
-                          Icons.add,
-                          size: 25,
-                          color: Colors.white,
-                        )
-                      ],
-                    ),
-                  ],
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  width: 10,
-                );
-              },
-              itemCount: snapshot.data?.results?.length ?? 1),
-        ),
-      );
-    },);
-
-
-
+        return Expanded(
+          child: Container(
+            height: MediaQuery.of(context).size.height * .4,
+            color: containerColor,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return MoviePosterWidget(
+                      posterPath:
+                          '$IMAGE_BASE_URL${snapshot.data?.results?[index].backdropPath}' ??
+                              '',
+                      voteText:
+                          '${snapshot.data?.results?[index].voteAverage}' ?? '',
+                      title: snapshot.data?.results?[index].title ?? '',
+                      releaseDate:
+                          '${snapshot.data?.results?[index].releaseDate?.substring(0, 4)} R');
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    width: 10,
+                  );
+                },
+                itemCount: snapshot.data?.results?.length ?? 1),
+          ),
+        );
+      },
+    );
   }
 }

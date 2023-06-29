@@ -72,21 +72,28 @@ class PopularMoviesWidget extends StatelessWidget {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        Icons.bookmark,
-                        size: 60,
-                        color: Colors.grey,
-                      ),
-                      Icon(
-                        Icons.add,
-                        size: 25,
-                        color: Colors.white,
-                      )
-                    ],
+                  InkWell(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: () {
+
+                    },
+                    child: Icon(
+                      Icons.bookmark_add_rounded,
+                      size: 30,
+                      color: Colors.blue
+                    ),
                   ),
+                  Positioned(
+                      bottom: 5,
+                      left: 5,
+                      child: Row(
+                        children: [
+                          Icon(Icons.star, size: 20, color: Colors.orangeAccent,),
+                          SizedBox(width: 5),
+                          Text('${snapshot.data?.results?[pro.selectedMovie].voteAverage}' ?? '', style: TextStyle(color: Colors.orangeAccent),)
+                        ],
+                      )),
                 ],
               ),
             ),
