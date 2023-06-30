@@ -6,7 +6,7 @@ import 'package:movies_app/screens/search_screen/widgets/search_text_form_field.
 import 'package:movies_app/screens/search_screen/widgets/search_wigget.dart';
 import 'package:provider/provider.dart';
 import '../../componant/constant.dart';
-import '../../models/argument_model.dart';
+import '../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../remote/api_manager.dart';
 import '../home_screen/widgets/vote_widget.dart';
 import '../movie_detail_screen/movie_detail_screen.dart';

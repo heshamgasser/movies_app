@@ -4,7 +4,7 @@ import 'package:movies_app/remote/api_manager.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:movies_app/screens/home_screen/widgets/movie_poster_widget.dart';
 import '../../../componant/constant.dart';
-import '../../../models/argument_model.dart';
+import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../../styles/app_color.dart';
 
 class TopRatedWidget extends StatelessWidget {

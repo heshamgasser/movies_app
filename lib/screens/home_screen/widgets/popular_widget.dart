@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/models/MovieDetailsModel.dart';
-import 'package:movies_app/models/argument_model.dart';
 import 'package:movies_app/provider/home_provider.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:provider/provider.dart';
 import '../../../componant/constant.dart';
-import '../../../models/PopularMoviesModel.dart';
+import '../../../models/home_screen_model/PopularMoviesModel.dart';
+import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 
 class PopularMoviesWidget extends StatelessWidget {
   AsyncSnapshot<PopularMoviesModel> snapshot;

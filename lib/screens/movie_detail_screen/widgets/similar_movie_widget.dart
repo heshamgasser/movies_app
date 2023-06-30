@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import '../../../componant/constant.dart';
-import '../../../models/argument_model.dart';
+import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../../styles/app_color.dart';
 import '../../home_screen/widgets/movie_poster_widget.dart';
 import '../movie_detail_screen.dart';

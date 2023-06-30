@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/models/ComingSoonModel.dart';
-import 'package:movies_app/models/argument_model.dart';
-import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:movies_app/screens/home_screen/widgets/movie_poster_widget.dart';
+import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import '../../../componant/constant.dart';
+import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../../remote/api_manager.dart';
 import '../../../styles/app_color.dart';
 
