@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movies_app/componant/constant.dart';
+import 'package:movies_app/models/CategoryModel.dart';
 import 'package:movies_app/models/ComingSoonModel.dart';
 import 'package:movies_app/models/MovieDetailsModel.dart';
 import 'package:movies_app/models/NewReleaseMovies.dart';
 
 import 'package:movies_app/models/PopularMoviesModel.dart';
+import 'package:movies_app/models/SearchByCategoryModel.dart';
 import 'package:movies_app/models/SimilarMoviesModel.dart';
 import 'package:movies_app/models/TopRatedMoviesModel.dart';
 
@@ -85,4 +87,31 @@ static Future<SimilarMoviesModel> getSimilarMovies (int movieId) async{
   SimilarMoviesModel similarMoviesModel = SimilarMoviesModel.fromJson(json);
   return similarMoviesModel;
 }
+
+static Future<CategoryModel> getMoviesCategory () async{
+  Uri url = Uri.https(BASEURL, BASE_CATEGORY_ENDPOINT , {
+    'api_key' : API_KEY,
+  },);
+
+  http.Response response = await http.get(url);
+  var json = jsonDecode(response.body);
+
+  CategoryModel categoryModel = CategoryModel.fromJson(json);
+  return categoryModel;
+}
+
+static Future<SearchByCategoryModel> getMoviesSearchByCategory (String query) async{
+  Uri url = Uri.https(BASEURL, BASE_SEARCH_ENDPOINT , {
+    'api_key' : API_KEY,
+    'query' : query
+  },);
+
+  http.Response response = await http.get(url);
+  var json = jsonDecode(response.body);
+
+  SearchByCategoryModel searchByCategoryModel = SearchByCategoryModel.fromJson(json);
+  return searchByCategoryModel;
+}
+
+
 }

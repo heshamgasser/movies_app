@@ -33,16 +33,20 @@ class MoviePosterWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: CachedNetworkImage(
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                    imageUrl: posterPath,
-                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                        Center(
-                      child: CircularProgressIndicator(
-                          value: downloadProgress.progress),
+                  child: Container(
+                    width: 97.w,
+                    height: 187.h,
+                    child: CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      imageUrl: posterPath,
+                      progressIndicatorBuilder: (context, url, downloadProgress) =>
+                          Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
                 SizedBox(height: 5.h),

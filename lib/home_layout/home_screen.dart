@@ -18,6 +18,7 @@ class HomeLayout extends StatelessWidget {
           child: Scaffold(
             backgroundColor: backgroundColor,
             bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: backgroundColor,
               showUnselectedLabels: true,
               iconSize: 30,
               unselectedItemColor: Colors.grey,

@@ -26,6 +26,7 @@ class MovieDetailScreen extends StatelessWidget {
           backgroundColor: backgroundColor,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
+            elevation: 0,
             leading: BackButton(
               onPressed: () {
                 Navigator.pushReplacementNamed(context, HomeLayout.routeName);

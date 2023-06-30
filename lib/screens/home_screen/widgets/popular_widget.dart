@@ -93,19 +93,23 @@ class PopularMoviesWidget extends StatelessWidget {
                                   arguments: ArgumentModel(
                                       movieId: snapshot.data?.results?[pro.selectedMovie].id));
                             },
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl:
-                              '$IMAGE_BASE_URL${snapshot.data?.results?[pro
-                                  .selectedMovie].posterPath}' ??
-                                  '',
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) =>
-                                  Center(
-                                      child: CircularProgressIndicator(
-                                          value: downloadProgress.progress)),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                            child: Container(
+                              width: 129.w,
+                              height: 199.h,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl:
+                                '$IMAGE_BASE_URL${snapshot.data?.results?[pro
+                                    .selectedMovie].posterPath}' ??
+                                    '',
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                    Center(
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress)),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
                             ),
                           ),
                         ),
