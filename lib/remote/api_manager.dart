@@ -1,16 +1,13 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:movies_app/componant/constant.dart';
 import 'package:movies_app/models/browse_screen_model/CategoryModel.dart';
 import 'package:movies_app/models/home_screen_model/ComingSoonModel.dart';
 import 'package:movies_app/models/home_screen_model/NewReleaseMovies.dart';
-
 import 'package:movies_app/models/home_screen_model/PopularMoviesModel.dart';
 import 'package:movies_app/models/SearchByCategoryModel.dart';
 import 'package:movies_app/models/SimilarMoviesModel.dart';
 import 'package:movies_app/models/home_screen_model/TopRatedMoviesModel.dart';
-
 import '../models/movie_details_similar_withArguments/MovieDetailsModel.dart';
 
 

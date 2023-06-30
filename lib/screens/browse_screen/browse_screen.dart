@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/models/browse_screen_model/CategoryModel.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import 'package:movies_app/screens/browse_screen/movies_by_category.dart';
 import 'package:movies_app/styles/app_color.dart';

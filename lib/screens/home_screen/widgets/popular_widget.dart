@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/home_provider.dart';
+import 'package:movies_app/screens/home_screen/widgets/small_poster_widget.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:provider/provider.dart';
@@ -76,57 +77,10 @@ class PopularMoviesWidget extends StatelessWidget {
             Positioned(
               bottom: -60.h,
               left: 5.w,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: 129.w,
-                    height: 199.h,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, MovieDetailScreen.routeName,
-                                  arguments: ArgumentModel(
-                                      movieId: snapshot.data?.results?[pro.selectedMovie].id));
-                            },
-                            child: Container(
-                              width: 129.w,
-                              height: 199.h,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl:
-                                '$IMAGE_BASE_URL${snapshot.data?.results?[pro
-                                    .selectedMovie].posterPath}' ??
-                                    '',
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                    Center(
-                                        child: CircularProgressIndicator(
-                                            value: downloadProgress.progress)),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 5.h),
-                        VoteWidget(
-                            '${snapshot.data?.results?[pro.selectedMovie]
-                                .voteAverage}'),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    onTap: () {},
-                    child: Icon(Icons.bookmark_add_rounded, color: Color(0xFF514F4F).withOpacity(.87), size: 36.h,),
-                  ),
-                ],
-              ),
+              child: SmallPoster(movieId: snapshot.data?.results?[pro.selectedMovie].id, posterPath: '$IMAGE_BASE_URL${snapshot.data?.results?[pro
+                  .selectedMovie].posterPath}', voteCount: '${snapshot.data?.results?[pro.selectedMovie]
+                  .voteAverage}'),
+
             ),
             Positioned(
               bottom: MediaQuery

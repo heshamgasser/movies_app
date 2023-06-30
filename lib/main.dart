@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/home_layout/home_screen.dart';
-import 'package:movies_app/screens/browse_screen/browse_screen.dart';
-import 'package:movies_app/screens/browse_screen/movies_by_category.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 
 void main () {
