@@ -139,7 +139,7 @@ class MovieDetailScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 18.h),
-              Expanded(child: SimilarMoviesWidget(snapshot.data?.id ?? arg.movieId)),
+              Expanded(child: SimilarMoviesWidget(arg.movieId)),
 
             ],
           ),
