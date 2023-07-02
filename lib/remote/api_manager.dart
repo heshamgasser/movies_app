@@ -14,13 +14,13 @@ import '../models/movie_details_similar_withArguments/MovieDetailsModel.dart';
 
 class ApiManager {
 
-static Future<PopularMoviesModel> getPopularMovies () async{
+static Future<PopularMoviesResponse> getPopularMovies () async{
   Uri url = Uri.https(BASEURL, BASE_POPULAR_ENDPOINT, {
     'api_key' : API_KEY,
   },);
   http.Response popularResponse = await http.get(url);
  var json =  jsonDecode(popularResponse.body);
- PopularMoviesModel popularMoviesModel =  PopularMoviesModel.fromJson(json);
+ PopularMoviesResponse popularMoviesModel =  PopularMoviesResponse.fromJson(json);
  return popularMoviesModel;
 }
 
@@ -48,7 +48,7 @@ static Future<TopRatedMoviesModel> getTopRatedMovies () async{
 }
 
 
-static Future<ComingSoonModel> getComingSoonMovies () async{
+static Future<ComingSoonResponse> getComingSoonMovies () async{
   Uri url = Uri.https(BASEURL, BASE_COMINGSOON_ENDPOINT, {
     'api_key' : API_KEY,
   },);
@@ -57,7 +57,7 @@ static Future<ComingSoonModel> getComingSoonMovies () async{
 
   var json = jsonDecode(response.body);
 
-  ComingSoonModel comingSoonModel = ComingSoonModel.fromJson(json);
+  ComingSoonResponse comingSoonModel = ComingSoonResponse.fromJson(json);
 
   return comingSoonModel;
 }

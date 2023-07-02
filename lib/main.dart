@@ -1,10 +1,12 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/home_layout/home_screen.dart';
+import 'package:movies_app/home_layout/home_layout_screen.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
+import 'package:movies_app/shared/bloc_observer.dart';
 
 void main () {
-
+  Bloc.observer = MyBlocObserver();
   runApp(MoviesApp());
 }
 

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/home_layout/home_screen.dart';
+import 'package:movies_app/home_layout/home_layout_screen.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import 'package:movies_app/screens/movie_detail_screen/widgets/similar_movie_widget.dart';

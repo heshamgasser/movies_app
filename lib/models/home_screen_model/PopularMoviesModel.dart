@@ -3,8 +3,8 @@
 /// total_pages : 38843
 /// total_results : 776842
 
-class PopularMoviesModel {
-  PopularMoviesModel({
+class PopularMoviesResponse {
+  PopularMoviesResponse({
       this.page,
     this.status_code,
     this.status_message,
@@ -12,7 +12,7 @@ class PopularMoviesModel {
       this.totalPages, 
       this.totalResults,});
 
-  PopularMoviesModel.fromJson(dynamic json) {
+  PopularMoviesResponse.fromJson(dynamic json) {
     page = json['page'];
     status_code = json['status_code'];
     status_message = json['status_message'];

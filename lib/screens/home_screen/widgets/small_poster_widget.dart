@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
-
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../movie_detail_screen/movie_detail_screen.dart';
 

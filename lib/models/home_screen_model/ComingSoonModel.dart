@@ -4,8 +4,8 @@
 /// total_pages : 16
 /// total_results : 319
 
-class ComingSoonModel {
-  ComingSoonModel({
+class ComingSoonResponse {
+  ComingSoonResponse({
     this.dates,
     this.status_code,
     this.status_message,
@@ -15,7 +15,7 @@ class ComingSoonModel {
     this.totalResults,
   });
 
-  ComingSoonModel.fromJson(dynamic json) {
+  ComingSoonResponse.fromJson(dynamic json) {
     dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
     status_code = json['status_code'];
     status_message = json['status_message'];
