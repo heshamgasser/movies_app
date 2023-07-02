@@ -31,7 +31,7 @@ class SmallPoster extends StatelessWidget {
                         arguments: ArgumentModel(
                             movieId: movieId),);
                   },
-                  child: Container(
+                  child: SizedBox(
                     width: 129.w,
                     height: 199.h,
                     child: CachedNetworkImage(

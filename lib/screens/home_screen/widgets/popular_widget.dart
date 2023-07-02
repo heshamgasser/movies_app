@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/screens/home_screen/home_screen_bloc/home_screen_cubit.dart';
 import 'package:movies_app/screens/home_screen/widgets/small_poster_widget.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
-import '../../../../componant/constant.dart';
-import '../../../../models/movie_details_similar_withArguments/argument_model.dart';
-import '../../home_screen_bloc/home_screen_cubit.dart';
+import '../../../componant/constant.dart';
+import '../../../models/movie_details_similar_withArguments/argument_model.dart';
+
 
 class PopularMoviesWidget extends StatelessWidget {
   // List <Results> popular;
@@ -21,40 +22,45 @@ class PopularMoviesWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: Alignment.center,
       children: [
-        CarouselSlider(
-          items: HomeScreenCubit.get(context).popularResults.map(
-            (e) {
-              return InkWell(
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                      context, MovieDetailScreen.routeName,
-                      arguments: ArgumentModel(movieId: e.id));
-                },
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 290.h,
-                  child: CachedNetworkImage(
+        SizedBox(
+          width: double.infinity,
+          height: 290.h,
+          child: CarouselSlider(
+            items: HomeScreenCubit.get(context).popularResults.map(
+                  (e) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, MovieDetailScreen.routeName,
+                        arguments: ArgumentModel(movieId: e.id));
+                  },
+                  child: SizedBox(
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                    imageUrl: '$IMAGE_BASE_URL${e.backdropPath}' ?? '',
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Center(
-                      child: CircularProgressIndicator(
-                          value: downloadProgress.progress),
+                    height: 290.h,
+                    child: CachedNetworkImage(
+                      width: double.infinity,
+                      height: 290.h,
+                      fit: BoxFit.fill,
+                      imageUrl: '$IMAGE_BASE_URL${e.backdropPath}' ?? '',
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                ),
-              );
-            },
-          ).toList(),
-          options: CarouselOptions(
-            enableInfiniteScroll: false,
-            initialPage: HomeScreenCubit.get(context).selectedMovie,
-            scrollDirection: Axis.horizontal,
-            onPageChanged: (index, reason) {
-              HomeScreenCubit.get(context).changeSelectedMovie(index);
-            },
+                );
+              },
+            ).toList(),
+            options: CarouselOptions(
+              enableInfiniteScroll: false,
+              initialPage: HomeScreenCubit.get(context).selectedMovie,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (index, reason) {
+                HomeScreenCubit.get(context).changeSelectedMovie(index);
+              },
+            ),
           ),
         ),
         IconButton(
@@ -73,14 +79,14 @@ class PopularMoviesWidget extends StatelessWidget {
                   .popularResults[HomeScreenCubit.get(context).selectedMovie]
                   .id,
               posterPath:
-                  '$IMAGE_BASE_URL${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].posterPath}',
+              '$IMAGE_BASE_URL${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].posterPath}',
               voteCount:
-                  '${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].voteAverage}'),
+              '${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].voteAverage}'),
         ),
         Positioned(
-          bottom: MediaQuery.of(context).size.height * -.15.h,
-          left: MediaQuery.of(context).size.width * .4.w,
-          child: Container(
+          bottom: MediaQuery.of(context).size.height * -.15,
+          left: MediaQuery.of(context).size.width * .4,
+          child: SizedBox(
             width: MediaQuery.of(context).size.width * .6,
             height: MediaQuery.of(context).size.height * .2,
             child: Column(
@@ -90,9 +96,9 @@ class PopularMoviesWidget extends StatelessWidget {
               children: [
                 Text(
                   HomeScreenCubit.get(context)
-                          .popularResults[
-                              HomeScreenCubit.get(context).selectedMovie]
-                          .title ??
+                      .popularResults[
+                  HomeScreenCubit.get(context).selectedMovie]
+                      .title ??
                       '',
                   style: TextStyle(color: Colors.white, fontSize: 14.sp),
                 ),
@@ -108,6 +114,10 @@ class PopularMoviesWidget extends StatelessWidget {
         ),
       ],
     );
+
+
+
+
 
 
 

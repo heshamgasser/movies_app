@@ -41,9 +41,9 @@ class HomeProvider extends ChangeNotifier {
   //   notifyListeners();
   // }
 
-  int selectedMovie = 0;
-  void changeSelectedMovie (int index){
-    selectedMovie = index;
-    notifyListeners();
-  }
+  // int selectedMovie = 0;
+  // void changeSelectedMovie (int index){
+  //   selectedMovie = index;
+  //   notifyListeners();
+  // }
 }

@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:movies_app/componant/constant.dart';
 import 'package:movies_app/models/browse_screen_model/CategoryModel.dart';
 import 'package:movies_app/models/home_screen_model/ComingSoonModel.dart';
-import 'package:movies_app/models/home_screen_model/NewReleaseMovies.dart';
 import 'package:movies_app/models/home_screen_model/PopularMoviesModel.dart';
 import 'package:movies_app/models/SearchByCategoryModel.dart';
 import 'package:movies_app/models/SimilarMoviesModel.dart';
@@ -24,17 +23,6 @@ class ApiManager {
 //  return popularMoviesModel;
 // }
 
-static Future<NewReleaseMovies> getNewReleaseMovies () async{
-  Uri url = Uri.https(BASEURL, BASE_LATEST_ENDPOINT, {
-    'api_key' : API_KEY,
-  },);
-
-  http.Response releaseResponse = await http.get(url);
-
-  var json = jsonDecode(releaseResponse.body);
-  NewReleaseMovies newReleaseMovies = NewReleaseMovies.fromJson(json);
-  return newReleaseMovies;
-}
 
 
 static Future<TopRatedMoviesModel> getTopRatedMovies () async{
