@@ -13,7 +13,25 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return
+
+
+
+      // ListView(
+      //             children: [
+      //              PopularMoviesWidget(),
+      //               SizedBox(height: 80.h),
+      //               ComingSoonMovies(),
+      //               SizedBox(height: 20.h),
+      //               TopRatedWidget(),
+      //               // SizedBox(height: 5.h)
+      //             ],
+      //           );
+
+
+
+
+      BlocProvider(
       create: (context) => HomeScreenCubit()..getPopularMovies(),
       child: BlocConsumer<HomeScreenCubit, HomeScreenStates>(
         listener: (context, state) {
@@ -48,6 +66,10 @@ class HomeScreen extends StatelessWidget {
         },
       ),
     );
+
+
+
+
 
     // ChangeNotifierProvider(
     //   create: (context) => HomeProvider(),

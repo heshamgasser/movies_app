@@ -9,7 +9,6 @@ import '../../../../models/movie_details_similar_withArguments/argument_model.da
 import '../../home_screen_bloc/home_screen_cubit.dart';
 
 class PopularMoviesWidget extends StatelessWidget {
-
   // List <Results> popular;
 
   // PopularMoviesWidget({
@@ -109,6 +108,9 @@ class PopularMoviesWidget extends StatelessWidget {
         ),
       ],
     );
+
+
+
 
     // ChangeNotifierProvider(
     //   create: (context) => HomeProvider(),

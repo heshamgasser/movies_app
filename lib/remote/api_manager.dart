@@ -14,15 +14,15 @@ import '../models/movie_details_similar_withArguments/MovieDetailsModel.dart';
 
 class ApiManager {
 
-static Future<PopularMoviesResponse> getPopularMovies () async{
-  Uri url = Uri.https(BASEURL, BASE_POPULAR_ENDPOINT, {
-    'api_key' : API_KEY,
-  },);
-  http.Response popularResponse = await http.get(url);
- var json =  jsonDecode(popularResponse.body);
- PopularMoviesResponse popularMoviesModel =  PopularMoviesResponse.fromJson(json);
- return popularMoviesModel;
-}
+// static Future<PopularMoviesResponse> getPopularMovies () async{
+//   Uri url = Uri.https(BASEURL, BASE_POPULAR_ENDPOINT, {
+//     'api_key' : API_KEY,
+//   },);
+//   http.Response popularResponse = await http.get(url);
+//  var json =  jsonDecode(popularResponse.body);
+//  PopularMoviesResponse popularMoviesModel =  PopularMoviesResponse.fromJson(json);
+//  return popularMoviesModel;
+// }
 
 static Future<NewReleaseMovies> getNewReleaseMovies () async{
   Uri url = Uri.https(BASEURL, BASE_LATEST_ENDPOINT, {
@@ -48,19 +48,19 @@ static Future<TopRatedMoviesModel> getTopRatedMovies () async{
 }
 
 
-static Future<ComingSoonResponse> getComingSoonMovies () async{
-  Uri url = Uri.https(BASEURL, BASE_COMINGSOON_ENDPOINT, {
-    'api_key' : API_KEY,
-  },);
-
-  http.Response response = await http.get(url);
-
-  var json = jsonDecode(response.body);
-
-  ComingSoonResponse comingSoonModel = ComingSoonResponse.fromJson(json);
-
-  return comingSoonModel;
-}
+// static Future<ComingSoonResponse> getComingSoonMovies () async{
+//   Uri url = Uri.https(BASEURL, BASE_COMINGSOON_ENDPOINT, {
+//     'api_key' : API_KEY,
+//   },);
+//
+//   http.Response response = await http.get(url);
+//
+//   var json = jsonDecode(response.body);
+//
+//   ComingSoonResponse comingSoonModel = ComingSoonResponse.fromJson(json);
+//
+//   return comingSoonModel;
+// }
 
 static Future<MovieDetailsModel> getMovieDetails (int movieId) async{
   Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId' , {
