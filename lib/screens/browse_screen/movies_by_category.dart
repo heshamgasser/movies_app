@@ -31,8 +31,9 @@ class MoviesByCategory extends StatelessWidget {
           );
         }
 
-        return Container(
-          height: MediaQuery.of(context).size.height * .9.h,
+        return Padding(
+          padding:
+              EdgeInsets.only(top: 30.h, bottom: 10.h, left: 10.w, right: 10.w),
           child: Column(
             children: [
               Row(
@@ -61,10 +62,12 @@ class MoviesByCategory extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           Navigator.pushReplacementNamed(
-                              context, MovieDetailScreen.routeName,
-                              arguments: ArgumentModel(
-                                  movieId:
-                                      snapshot.data?.results?[index].id ?? ''),);
+                            context,
+                            MovieDetailScreen.routeName,
+                            arguments: ArgumentModel(
+                                movieId:
+                                    snapshot.data?.results?[index].id ?? ''),
+                          );
                         },
                         child: Container(
                           height: 90.h,
