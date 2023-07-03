@@ -17,12 +17,19 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(create: (context) => HomeScreenCubit()..getPopularMovies()..getComingSoonMovies()..getTopRatedMovies(),
     child: BlocConsumer<HomeScreenCubit, HomeScreenStates>(
       listener: (context, state) {
-
+        if (state is PopularLoadingState || state is ComingSoonLoadingState ||state is TopRatedLoadingState){
+          showDialog(context: context, builder: (context) {
+            return AlertDialog(
+              title: Text('Loading'),
+              content:  Center(child: CircularProgressIndicator(),),
+            );
+          },);
+        }
       },
       builder: (context, state) {
         return ListView(
           children: [
-            PopularMoviesWidget(),
+            HomeScreenCubit.get(context).popularResults.isEmpty ? Center(child: CircularProgressIndicator(),) : PopularMoviesWidget(),
             SizedBox(height: 80.h),
             ComingSoonMovies(),
             SizedBox(height: 20.h),
