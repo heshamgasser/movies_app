@@ -54,10 +54,8 @@ static Future<MovieDetailsModel> getMovieDetails (int movieId) async{
   Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId' , {
     'api_key' : API_KEY,
   },);
-
   http.Response response = await http.get(url);
   var json = jsonDecode(response.body);
-
   MovieDetailsModel movieDetailsModel = MovieDetailsModel.fromJson(json);
   return movieDetailsModel;
 }
