@@ -99,7 +99,6 @@ class MoviesByCategory extends StatelessWidget {
                                     Text(
                                       snapshot.data?.results?[index].title ??
                                           '',
-                                      maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                           fontSize: 15.sp,
@@ -114,7 +113,7 @@ class MoviesByCategory extends StatelessWidget {
                                       style: TextStyle(
                                           fontSize: 13.sp, color: Colors.grey),
                                     ),
-                                    SizedBox(height: 5.h),
+                                    SizedBox(height: 15.h),
                                     VoteWidget(
                                         '${snapshot.data?.results?[index].voteAverage}' ??
                                             '')
