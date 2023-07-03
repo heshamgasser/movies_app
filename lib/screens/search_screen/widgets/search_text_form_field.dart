@@ -3,16 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchTextFormField extends StatelessWidget {
   TextEditingController controller;
-  Function onPressed;
+  Function onClosePressed;
+  Function onSearchPressed;
 
 
-  SearchTextFormField({required this.controller, required this.onPressed});
+
+  SearchTextFormField({required this.controller, required this.onClosePressed, required this.onSearchPressed});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-
+      textInputAction: TextInputAction.search,
       onFieldSubmitted: (value) {
         controller.text = value;
       },
@@ -34,8 +36,11 @@ class SearchTextFormField extends StatelessWidget {
         hintText: 'Search',
         hintStyle: TextStyle(color: Colors.white),
         suffixIcon: IconButton(onPressed: () {
-          onPressed();
-        }, icon: Icon(Icons.search, size: 30, color: Colors.white,),),
+          onSearchPressed();
+        }, icon: Icon(Icons.search, size: 30.r, color: Colors.white,),),
+        prefixIcon: IconButton(onPressed: () {
+          onClosePressed();
+        }, icon: Icon(Icons.close, size: 30.r, color: Colors.white,),),
       ),
     );
   }

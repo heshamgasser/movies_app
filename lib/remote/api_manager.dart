@@ -25,15 +25,15 @@ class ApiManager {
 
 
 
-static Future<TopRatedMoviesModel> getTopRatedMovies () async{
-  Uri url = Uri.https(BASEURL,BASE_TOPRATED_ENDPOINT, {
-    'api_key' : API_KEY,
-  },);
-  http.Response response = await http.get(url);
-  var json = jsonDecode(response.body);
-  TopRatedMoviesModel topRatedMoviesModel = TopRatedMoviesModel.fromJson(json);
-  return topRatedMoviesModel;
-}
+// static Future<TopRatedMoviesModel> getTopRatedMovies () async{
+//   Uri url = Uri.https(BASEURL,BASE_TOPRATED_ENDPOINT, {
+//     'api_key' : API_KEY,
+//   },);
+//   http.Response response = await http.get(url);
+//   var json = jsonDecode(response.body);
+//   TopRatedMoviesModel topRatedMoviesModel = TopRatedMoviesModel.fromJson(json);
+//   return topRatedMoviesModel;
+// }
 
 
 // static Future<ComingSoonResponse> getComingSoonMovies () async{

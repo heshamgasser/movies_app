@@ -23,11 +23,15 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             children: [
               SearchTextFormField(
-                  controller: pro.searchController,
-                onPressed: (){
-                    pro.getController();
+                controller: pro.searchController,
+                onSearchPressed: () {
+                  pro.onSearchButtonClicked();
+                  FocusManager.instance.primaryFocus?.unfocus();
                 },
-                  ),
+                onClosePressed: () {
+                  pro.onCloseButtonClicked();
+                },
+              ),
               SizedBox(height: 30.h),
               pro.searchController.text.isEmpty
                   ? Column(
@@ -49,7 +53,8 @@ class SearchScreen extends StatelessWidget {
                       future: ApiManager.getMoviesSearchByCategory(
                           pro.searchController.text),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return Center(
                             child: CircularProgressIndicator(),
                           );
@@ -62,7 +67,23 @@ class SearchScreen extends StatelessWidget {
                             ],
                           );
                         }
-
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Icon(
+                                Icons.local_movies,
+                                size: 100.w,
+                                color: Color(0xFFB5B4B4),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                'No Movies Found',
+                                style: TextStyle(
+                                    color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                              )
+                            ],
+                          );
+                        }
                         return Expanded(
                           child: ListView.separated(
                               itemBuilder: (context, index) {
@@ -72,9 +93,9 @@ class SearchScreen extends StatelessWidget {
                                       context,
                                       MovieDetailScreen.routeName,
                                       arguments: ArgumentModel(
-                                          movieId:
-                                              snapshot.data?.results?[index].id ??
-                                                  ''),
+                                          movieId: snapshot
+                                                  .data?.results?[index].id ??
+                                              ''),
                                     );
                                   },
                                   child: Container(
@@ -96,8 +117,9 @@ class SearchScreen extends StatelessWidget {
                                                             value:
                                                                 downloadProgress
                                                                     .progress)),
-                                            errorWidget: (context, url, error) =>
-                                                Icon(Icons.error),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
                                           ),
                                         ),
                                         SizedBox(width: 10.w),
