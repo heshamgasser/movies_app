@@ -75,10 +75,8 @@ class SmallPoster extends StatelessWidget {
             ],
           ),
         ),
-        InkWell(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onTap: () {
+        IconButton(
+          onPressed: () {
             HomeScreenCubit.get(context).watchlistSelected();
             FirebaseDataModel firebaseDataModel = FirebaseDataModel(
                 id: HomeScreenCubit.get(context)
@@ -96,11 +94,16 @@ class SmallPoster extends StatelessWidget {
                 voteCount: HomeScreenCubit.get(context)
                     .popularResults[HomeScreenCubit.get(context).selectedMovie]
                     .voteAverage,
-                selected: HomeScreenCubit.get(context).selected);
+                selected: HomeScreenCubit.get(context).selected ? true : false);
 
-            FirebaseFunction.addMovieToWishList(firebaseDataModel);
+            HomeScreenCubit.get(context).selected
+                ? FirebaseFunction.addMovieToWishList(firebaseDataModel)
+                : FirebaseFunction.removeFromWishlist(HomeScreenCubit.get(
+                        context)
+                    .popularResults[HomeScreenCubit.get(context).selectedMovie]
+                    .id);
           },
-          child: HomeScreenCubit.get(context).selected
+          icon: HomeScreenCubit.get(context).selected
               ? Icon(
                   Icons.bookmark_added_rounded,
                   color: Color(0xFFF7B539).withOpacity(.87),
@@ -111,7 +114,7 @@ class SmallPoster extends StatelessWidget {
                   color: Color(0xFF514F4F).withOpacity(.87),
                   size: 36.h,
                 ),
-        ),
+        )
       ],
     );
   }

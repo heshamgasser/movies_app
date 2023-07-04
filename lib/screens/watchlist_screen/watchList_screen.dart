@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/models/firebase_data_model.dart';
 import 'package:movies_app/shared/remote/firebase_function.dart';
 import '../../componant/constant.dart';
 import '../../models/movie_details_similar_withArguments/argument_model.dart';
@@ -12,12 +13,18 @@ class WatchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: FirebaseFunction.getDataFromFireStore(),
+    return StreamBuilder(
+      stream: FirebaseFunction.getDataFromFireStore(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting){
           return Center(child: CircularProgressIndicator(),);
         }
+
+
+        List <FirebaseDataModel> data = snapshot.data?.docs.map((e){
+          return e.data();
+        }).toList() ?? [] ;
+
 
       return  Padding(
         padding:
@@ -40,7 +47,7 @@ class WatchList extends StatelessWidget {
                           context,
                           MovieDetailScreen.routeName,
                           arguments: ArgumentModel(
-                              movieId: snapshot.data!.docs[index].data().id
+                              movieId: data[index].id
                               // snapshot.data?.results?[index].id ??
                               ),
                         );
@@ -55,7 +62,7 @@ class WatchList extends StatelessWidget {
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
                                 imageUrl:
-                                    snapshot.data?.docs[index].data().posterPath ??
+                                   data[index].posterPath ??
                                 // '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                 '',
                                 progressIndicatorBuilder: (context, url,
@@ -75,7 +82,7 @@ class WatchList extends StatelessWidget {
                                 CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    snapshot.data?.docs[index].data().title ??
+                                   data[index].title ??
                                     '',
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -85,14 +92,14 @@ class WatchList extends StatelessWidget {
                                   ),
                                   SizedBox(height: 5.h),
                                   Text(
-                                    snapshot.data?.docs[index].data().releaseDate ??
+                                   data[index].releaseDate ??
                                     '',
                                     style: TextStyle(
                                         fontSize: 13.sp, color: Colors.grey),
                                   ),
                                   SizedBox(height: 15.h),
                                   VoteWidget(
-                                      '${snapshot.data!.docs[index].data().voteCount}')
+                                      '${data[index].voteCount}')
                                 ],
                               ),
                             ),

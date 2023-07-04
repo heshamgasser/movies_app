@@ -19,9 +19,14 @@ class FirebaseFunction {
     docRef.set(firebaseDataModel);
   }
 
-  static Future<QuerySnapshot<FirebaseDataModel>> getDataFromFireStore () {
+  static Stream<QuerySnapshot<FirebaseDataModel>> getDataFromFireStore () {
     var collection = createCollection();
-    return  collection.get();
+    return  collection.snapshots();
+  }
+
+
+  static Future<void> removeFromWishlist (num id){
+   return createCollection().doc('$id').delete();
   }
 }
 
