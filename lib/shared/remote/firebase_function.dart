@@ -19,6 +19,9 @@ class FirebaseFunction {
     docRef.set(firebaseDataModel);
   }
 
-
+  static Future<QuerySnapshot<FirebaseDataModel>> getDataFromFireStore () {
+    var collection = createCollection();
+    return  collection.get();
+  }
 }
 

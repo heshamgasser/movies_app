@@ -97,6 +97,7 @@ class SmallPoster extends StatelessWidget {
                     .popularResults[HomeScreenCubit.get(context).selectedMovie]
                     .voteAverage,
                 selected: HomeScreenCubit.get(context).selected);
+
             FirebaseFunction.addMovieToWishList(firebaseDataModel);
           },
           child: HomeScreenCubit.get(context).selected
