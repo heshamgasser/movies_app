@@ -51,7 +51,7 @@ class SimilarMoviesWidget extends StatelessWidget {
                             '$IMAGE_BASE_URL${snapshot.data?.results?[index].posterPath}' ??
                                 '',
                         voteText:
-                            '${snapshot.data?.results?[index].voteAverage ?? ''}',
+                            '${snapshot.data?.results?[index].voteAverage}' ?? '',
                         title: snapshot.data?.results?[index].title ?? '',
                         releaseDate: snapshot.data?.results?[index].releaseDate ?? '',
                         onTapped: () {
@@ -68,7 +68,7 @@ class SimilarMoviesWidget extends StatelessWidget {
                         width: 10.w,
                       );
                     },
-                    itemCount: snapshot.data?.results?.length ?? 1),
+                    itemCount: snapshot.data!.results!.length),
               ),
             ],
           ),

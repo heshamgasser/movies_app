@@ -16,150 +16,154 @@ class MovieDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var arg = ModalRoute.of(context)!.settings.arguments as ArgumentModel;
 
-    return
-        FutureBuilder(
-        future: ApiManager.getMovieDetails(arg.movieId),
-        builder: (context, snapshot) {
-          var category = snapshot.data?.genres ?? [];
-          return Scaffold(
-            backgroundColor: backgroundColor,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: BackButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, HomeLayout.routeName);
-                },
-              ),
-              centerTitle: true,
-              title: Text(
-                snapshot.data?.title ?? '',
-                // arg.title,
-                style: TextStyle(fontSize: 20.sp),
-              ),
+    return FutureBuilder(
+      future: ApiManager.getMovieDetails(arg.movieId),
+      builder: (context, snapshot) {
+        var category = snapshot.data?.genres ?? [];
+        return Scaffold(
+          backgroundColor: backgroundColor,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: BackButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, HomeLayout.routeName);
+              },
             ),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CachedNetworkImage(
-                      width: double.infinity,
-                      height: 217.h,
-                      imageUrl: '${IMAGE_BASE_URL}${snapshot.data?.backdropPath}' ?? '',
-                      // ${arg.imageBackground}",
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress)),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+            centerTitle: true,
+            title: Text(
+              snapshot.data?.title ?? '',
+              // arg.title,
+              style: TextStyle(fontSize: 20.sp),
+            ),
+          ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  CachedNetworkImage(
+                    width: double.infinity,
+                    height: 217.h,
+                    imageUrl:
+                        '${IMAGE_BASE_URL}${snapshot.data?.backdropPath}' ?? '',
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                value: downloadProgress.progress)),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.play_circle,
+                      size: 60.r,
+                      color: Colors.white,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.play_circle,
-                        size: 60.r,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 12.h),
-                snapshot.data?.releaseDate == null || snapshot.data?.voteAverage == null ? Center(child: CircularProgressIndicator(),) :
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      snapshot.data?.title ?? '',
-                      // arg.title ?? '',
-                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                    ),
-                    SizedBox(height: 6.h),
-                    Text(
-                      'Release Date: ${snapshot.data?.releaseDate}' ?? '',
-                      // ${arg.releaseDate}',
-                      style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 10.sp),
-                    ),
-                    SizedBox(height: 19.h),
-                    SizedBox(
-                      height: 199.h,
-                      width: double.infinity,
-                      child: Row(
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl:
-                            "${IMAGE_BASE_URL}${snapshot.data?.posterPath}" ?? '',
-                            // ${arg.poster}",
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) => Center(
-                                child: CircularProgressIndicator(
-                                    value: downloadProgress.progress)),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          ),
-                          SizedBox(width: 11.w),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: GridView.builder(
-                                    gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisSpacing: 5.w,
-                                        mainAxisSpacing: 3.h,
-                                        crossAxisCount: 4),
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.r),
-                                          border: Border.all(
-                                            color: Color(0xFFCBCBCB),
-                                          ),
-                                        ),
-                                        child: FittedBox(
-                                            fit: BoxFit.scaleDown,
-                                            child: Text(category[index].name ?? '', style: TextStyle(color: Color(0xFFCBCBCB), fontSize: 10.sp),)),
-                                      );
-                                    },
-                                    itemCount: category.length,
-                                  ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 12.h),
+              snapshot.data?.releaseDate == null ||
+                      snapshot.data?.voteAverage == null
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          snapshot.data?.title ?? '',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 18.sp),
+                        ),
+                        SizedBox(height: 6.h),
+                        Text(
+                          'Release Date: ${snapshot.data?.releaseDate}' ?? '',
+                          style: TextStyle(
+                              color: Color(0xFFB5B4B4), fontSize: 10.sp),
+                        ),
+                        SizedBox(height: 19.h),
+                        SizedBox(
+                          height: 199.h,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl:
+                                    "${IMAGE_BASE_URL}${snapshot.data?.posterPath}" ??
+                                        '',
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) => Center(
+                                  child: CircularProgressIndicator(
+                                      value: downloadProgress.progress),
                                 ),
-                                Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      snapshot.data?.overview ?? '',
-                                      style: TextStyle(
-                                          color: Color(0xFFCBCBCB), fontSize: 13.sp),
-                                      softWrap: true,
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                              SizedBox(width: 11.w),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: GridView.builder(
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisSpacing: 5.w,
+                                                mainAxisSpacing: 3.h,
+                                                crossAxisCount: 4),
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                              border: Border.all(
+                                                color: Color(0xFFCBCBCB),
+                                              ),
+                                            ),
+                                            child: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                category[index].name ?? '',
+                                                style: TextStyle(
+                                                    color: Color(0xFFCBCBCB),
+                                                    fontSize: 10.sp),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        itemCount: category.length,
+                                      ),
                                     ),
-                                  ),
+                                    Expanded(
+                                      child: SingleChildScrollView(
+                                        child: Text(
+                                          snapshot.data?.overview ?? '',
+                                          style: TextStyle(
+                                              color: Color(0xFFCBCBCB),
+                                              fontSize: 13.sp),
+                                          softWrap: true,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 20.h),
+                                    VoteWidget(
+                                        '${snapshot.data?.voteAverage}' ?? '')
+                                  ],
                                 ),
-                                SizedBox(height: 20.h),
-                                VoteWidget('${snapshot.data?.voteAverage}' ?? '')
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-
-
-
-                SizedBox(height: 18.h),
-                Expanded(child: SimilarMoviesWidget(arg.movieId)),
-
-              ],
-            ),
-          );
-        },
-      );
-
-
-
-
-
-
+              SizedBox(height: 18.h),
+              Expanded(child: SimilarMoviesWidget(arg.movieId)),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

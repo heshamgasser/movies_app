@@ -10,11 +10,6 @@ import '../../../models/movie_details_similar_withArguments/argument_model.dart'
 
 
 class PopularMoviesWidget extends StatelessWidget {
-  // List <Results> popular;
-
-  // PopularMoviesWidget({
-  //   required this.popular,
-  // });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +70,6 @@ class PopularMoviesWidget extends StatelessWidget {
           bottom: -60.h,
           left: 5.w,
           child: SmallPoster(
-
               movieId: HomeScreenCubit.get(context)
                   .popularResults[HomeScreenCubit.get(context).selectedMovie]
                   .id,

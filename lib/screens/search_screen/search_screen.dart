@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/search_provider.dart';
 import 'package:movies_app/screens/search_screen/widgets/search_text_form_field.dart';
-import 'package:movies_app/screens/search_screen/widgets/search_wigget.dart';
 import 'package:provider/provider.dart';
 import '../../componant/constant.dart';
 import '../../models/movie_details_similar_withArguments/argument_model.dart';
@@ -108,15 +107,15 @@ class SearchScreen extends StatelessWidget {
                                           child: CachedNetworkImage(
                                             fit: BoxFit.cover,
                                             imageUrl:
-                                                '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath ?? ''}',
+                                                '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
+                                                    '',
                                             progressIndicatorBuilder: (context,
                                                     url, downloadProgress) =>
                                                 Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                            value:
-                                                                downloadProgress
-                                                                    .progress)),
+                                              child: CircularProgressIndicator(
+                                                  value: downloadProgress
+                                                      .progress),
+                                            ),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     Icon(Icons.error),
@@ -151,7 +150,7 @@ class SearchScreen extends StatelessWidget {
                                               SizedBox(height: 5.h),
                                               VoteWidget(
                                                   '${snapshot.data?.results?[index].voteAverage}' ??
-                                                      '')
+                                                      ''),
                                             ],
                                           ),
                                         ),
