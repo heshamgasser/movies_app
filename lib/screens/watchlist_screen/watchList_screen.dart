@@ -16,110 +16,128 @@ class WatchList extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFunction.getDataFromFireStore(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting){
-          return Center(child: CircularProgressIndicator(),);
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
+        List<FirebaseDataModel> data = snapshot.data?.docs.map((e) {
+              return e.data();
+            }).toList() ??
+            [];
 
-        List <FirebaseDataModel> data = snapshot.data?.docs.map((e){
-          return e.data();
-        }).toList() ?? [] ;
-
-
-      return  Padding(
-        padding:
-        EdgeInsets.only(top: 50.h, bottom: 10.h, left: 10.w, right: 10.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Watchlist',
-              // arg.title,
-              style: TextStyle(fontSize: 20.sp, color: Colors.white),
-            ),
-            SizedBox(height: 15.h),
-            Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          MovieDetailScreen.routeName,
-                          arguments: ArgumentModel(
-                              movieId: data[index].id
-                              // snapshot.data?.results?[index].id ??
+        return  Padding(
+                padding: EdgeInsets.only(
+                    top: 50.h, bottom: 10.h, left: 10.w, right: 10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'Watchlist',
+                      // arg.title,
+                      style: TextStyle(fontSize: 20.sp, color: Colors.white),
+                    ),
+                    SizedBox(height: 15.h),
+                    data.isEmpty
+                        ? Center(
+                          child: Column(
+                      children: [
+                          Icon(
+                            Icons.local_movies,
+                            size: 100.w,
+                            color: Color(0xFFB5B4B4),
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            'No Movies Found',
+                            style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                          )
+                      ],
+                    ),
+                        )
+                        : Expanded(
+                      child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  MovieDetailScreen.routeName,
+                                  arguments: ArgumentModel(
+                                      movieId: data[index].id
+                                      // snapshot.data?.results?[index].id ??
+                                      ),
+                                );
+                              },
+                              child: Container(
+                                height: 90.h,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 90.h,
+                                      width: 140.w,
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: data[index].posterPath ??
+                                            // '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
+                                            '',
+                                        progressIndicatorBuilder: (context, url,
+                                                downloadProgress) =>
+                                            Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        value: downloadProgress
+                                                            .progress)),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Text(
+                                            data[index].title ?? '',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(height: 5.h),
+                                          Text(
+                                            data[index].releaseDate ?? '',
+                                            style: TextStyle(
+                                                fontSize: 13.sp,
+                                                color: Colors.grey),
+                                          ),
+                                          SizedBox(height: 15.h),
+                                          VoteWidget('${data[index].voteCount}')
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                        );
-                      },
-                      child: Container(
-                        height: 90.h,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 90.h,
-                              width: 140.w,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                   data[index].posterPath ??
-                                // '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
-                                '',
-                                progressIndicatorBuilder: (context, url,
-                                    downloadProgress) =>
-                                    Center(
-                                        child: CircularProgressIndicator(
-                                            value:
-                                            downloadProgress.progress)),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
-                            SizedBox(width: 10.w),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                   data[index].title ??
-                                    '',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white),
-                                  ),
-                                  SizedBox(height: 5.h),
-                                  Text(
-                                   data[index].releaseDate ??
-                                    '',
-                                    style: TextStyle(
-                                        fontSize: 13.sp, color: Colors.grey),
-                                  ),
-                                  SizedBox(height: 15.h),
-                                  VoteWidget(
-                                      '${data[index].voteCount}')
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(color: Colors.white,thickness: 1, indent: 5.w, endIndent: 5.w,);
-                  },
-                  itemCount: snapshot.data!.docs.length),
-            ),
-          ],
-        ),
-      );
-    },);
-
-
-
-
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return Divider(
+                              color: Colors.white,
+                              thickness: 1,
+                              indent: 5.w,
+                              endIndent: 5.w,
+                            );
+                          },
+                          itemCount: snapshot.data!.docs.length),
+                    ),
+                  ],
+                ),
+              );
+      },
+    );
   }
 }
