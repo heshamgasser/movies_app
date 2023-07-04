@@ -75,13 +75,15 @@ class PopularMoviesWidget extends StatelessWidget {
           bottom: -60.h,
           left: 5.w,
           child: SmallPoster(
+
               movieId: HomeScreenCubit.get(context)
                   .popularResults[HomeScreenCubit.get(context).selectedMovie]
                   .id,
               posterPath:
               '$IMAGE_BASE_URL${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].posterPath}',
               voteCount:
-              '${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].voteAverage}'),
+              '${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].voteAverage}'
+          ),
         ),
         Positioned(
           bottom: MediaQuery.of(context).size.height * -.15,

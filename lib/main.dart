@@ -1,11 +1,17 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/home_layout/home_layout_screen.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:movies_app/shared/bloc_observer.dart';
+import 'firebase_options.dart';
 
-void main () {
+void main () async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Bloc.observer = MyBlocObserver();
   runApp(MoviesApp());
 }

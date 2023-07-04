@@ -126,7 +126,7 @@ class MoviesByCategory extends StatelessWidget {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return SizedBox(height: 10.h);
+                      return Divider(color: Colors.white,thickness: 1, indent: 5.w, endIndent: 5.w,);
                     },
                     itemCount: snapshot.data!.results!.length),
               ),

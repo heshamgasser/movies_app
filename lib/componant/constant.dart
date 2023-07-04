@@ -9,3 +9,5 @@ String BASE_SEARCH_ENDPOINT = '/3/search/movie';
 String SIMILAR = '/similar';
 String API_KEY = 'a5d1c3196ca603f7c3b0eb5e1fa13d03';
 String IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
+
+String COLLECTION_REFRENCE = 'Wishlist Movies';

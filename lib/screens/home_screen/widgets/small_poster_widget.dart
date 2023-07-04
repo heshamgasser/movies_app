@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
+import 'package:movies_app/shared/remote/firebase_function.dart';
+import '../../../models/movie_details_similar_withArguments/MovieDetailsModel.dart';
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../movie_detail_screen/movie_detail_screen.dart';
 
@@ -9,6 +11,7 @@ class SmallPoster extends StatelessWidget {
   var movieId;
   String posterPath;
   String voteCount;
+
 
 
   SmallPoster({required this.movieId,required this.posterPath,required this.voteCount});
@@ -59,7 +62,9 @@ class SmallPoster extends StatelessWidget {
         InkWell(
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
-          onTap: () {},
+          onTap: () {
+            // FirebaseFunction.addMovieToWishList(movieDetailsModel);
+          },
           child: Icon(Icons.bookmark_add_rounded, color: Color(0xFF514F4F).withOpacity(.87), size: 36.h,),
         ),
       ],

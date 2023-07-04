@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/screens/browse_screen/browse_screen.dart';
 import 'package:movies_app/screens/home_screen/home_screen.dart';
 import 'package:movies_app/screens/search_screen/search_screen.dart';
-import 'package:movies_app/screens/watchList_screen.dart';
+import 'package:movies_app/screens/watchlist_screen/watchList_screen.dart';
 import 'package:movies_app/styles/app_color.dart';
 
 class HomeProvider extends ChangeNotifier {
