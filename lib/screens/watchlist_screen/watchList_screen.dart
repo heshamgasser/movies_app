@@ -35,7 +35,7 @@ class WatchList extends StatelessWidget {
                         arguments: ArgumentModel(
                             movieId:
                             // snapshot.data?.results?[index].id ??
-                                ''),
+                        0),
                       );
                     },
                     child: Container(

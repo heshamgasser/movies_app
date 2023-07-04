@@ -21,6 +21,13 @@ class HomeScreenCubit extends Cubit<HomeScreenStates>{
     emit(PopularChangedState());
   }
 
+  bool selected = false;
+
+  void watchlistSelected (){
+    selected = !selected;
+    emit(PopularWatchlistChangedState());
+  }
+
   List popularResults = [];
 
   Future<void> getPopularMovies() async {
@@ -79,6 +86,4 @@ class HomeScreenCubit extends Cubit<HomeScreenStates>{
     });
 
   }
-
-
 }

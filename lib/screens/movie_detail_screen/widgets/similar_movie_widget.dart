@@ -8,7 +8,7 @@ import '../../home_screen/widgets/movie_poster_widget.dart';
 import '../movie_detail_screen.dart';
 
 class SimilarMoviesWidget extends StatelessWidget {
-  int movieId;
+  num movieId;
 
   SimilarMoviesWidget(this.movieId);
 
@@ -57,7 +57,7 @@ class SimilarMoviesWidget extends StatelessWidget {
                         onTapped: () {
                           Navigator.pushReplacementNamed(
                               arguments: ArgumentModel(
-                                  movieId: snapshot.data?.results?[index].id),
+                                  movieId: snapshot.data!.results![index].id!),
                               context,
                               MovieDetailScreen.routeName);
                         },

@@ -10,6 +10,8 @@ class PopularLoadingSuccessState extends HomeScreenStates{}
 
 class PopularChangedState extends HomeScreenStates{}
 
+class PopularWatchlistChangedState extends HomeScreenStates{}
+
 class PopularLoadingErrorState extends HomeScreenStates{
   String error;
   PopularLoadingErrorState(this.error);

@@ -8,9 +8,7 @@ import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart'
 import '../../../componant/constant.dart';
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 
-
 class PopularMoviesWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,7 +20,7 @@ class PopularMoviesWidget extends StatelessWidget {
           height: 290.h,
           child: CarouselSlider(
             items: HomeScreenCubit.get(context).popularResults.map(
-                  (e) {
+              (e) {
                 return InkWell(
                   onTap: () {
                     Navigator.pushReplacementNamed(
@@ -69,15 +67,7 @@ class PopularMoviesWidget extends StatelessWidget {
         Positioned(
           bottom: -60.h,
           left: 5.w,
-          child: SmallPoster(
-              movieId: HomeScreenCubit.get(context)
-                  .popularResults[HomeScreenCubit.get(context).selectedMovie]
-                  .id,
-              posterPath:
-              '$IMAGE_BASE_URL${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].posterPath}',
-              voteCount:
-              '${HomeScreenCubit.get(context).popularResults[HomeScreenCubit.get(context).selectedMovie].voteAverage}'
-          ),
+          child: SmallPoster(),
         ),
         Positioned(
           bottom: MediaQuery.of(context).size.height * -.15,
@@ -92,9 +82,9 @@ class PopularMoviesWidget extends StatelessWidget {
               children: [
                 Text(
                   HomeScreenCubit.get(context)
-                      .popularResults[
-                  HomeScreenCubit.get(context).selectedMovie]
-                      .title ??
+                          .popularResults[
+                              HomeScreenCubit.get(context).selectedMovie]
+                          .title ??
                       '',
                   style: TextStyle(color: Colors.white, fontSize: 14.sp),
                 ),
@@ -110,13 +100,6 @@ class PopularMoviesWidget extends StatelessWidget {
         ),
       ],
     );
-
-
-
-
-
-
-
 
     // ChangeNotifierProvider(
     //   create: (context) => HomeProvider(),

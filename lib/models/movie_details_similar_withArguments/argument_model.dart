@@ -1,5 +1,5 @@
 class ArgumentModel {
-  var movieId;
+  num movieId;
 
 
   ArgumentModel(

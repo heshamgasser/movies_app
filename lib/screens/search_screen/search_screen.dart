@@ -93,8 +93,7 @@ class SearchScreen extends StatelessWidget {
                                       MovieDetailScreen.routeName,
                                       arguments: ArgumentModel(
                                           movieId: snapshot
-                                                  .data?.results?[index].id ??
-                                              ''),
+                                                  .data!.results![index].id!),
                                     );
                                   },
                                   child: Container(

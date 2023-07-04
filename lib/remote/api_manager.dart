@@ -50,7 +50,7 @@ class ApiManager {
 //   return comingSoonModel;
 // }
 
-static Future<MovieDetailsModel> getMovieDetails (int movieId) async{
+static Future<MovieDetailsModel> getMovieDetails (num movieId) async{
   Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId' , {
     'api_key' : API_KEY,
   },);
@@ -60,7 +60,7 @@ static Future<MovieDetailsModel> getMovieDetails (int movieId) async{
   return movieDetailsModel;
 }
 
-static Future<SimilarMoviesModel> getSimilarMovies (int movieId) async{
+static Future<SimilarMoviesModel> getSimilarMovies (num movieId) async{
   Uri url = Uri.https(BASEURL, '$BASE_DETAILS_ENDPOINT$movieId$SIMILAR' , {
     'api_key' : API_KEY,
   },);
