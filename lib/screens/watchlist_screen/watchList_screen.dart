@@ -70,13 +70,18 @@ class WatchList extends StatelessWidget {
                                       ),
                                 );
                               },
-                              child: Container(
-                                height: 90.h,
+                              child: Card(
+                                elevation: 2,
+                                margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                                color: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                ),
                                 child: Row(
                                   children: [
                                     Container(
-                                      height: 90.h,
-                                      width: 140.w,
+                                      height: 150.h,
+                                      width: 170.w,
                                       child: CachedNetworkImage(
                                         fit: BoxFit.cover,
                                         imageUrl: data[index].posterPath ??

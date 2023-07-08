@@ -86,7 +86,8 @@ class SearchPage extends SearchDelegate {
             Center(
               child: Text(
                 'No Movies Found',
-                style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                style:
+                TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
               ),
             )
           ],
@@ -103,15 +104,19 @@ class SearchPage extends SearchDelegate {
                           movieId: snapshot.data!.results![index].id!),
                     );
                   },
-                  child: Container(
-                    height: 90.h,
+                  child: Card(
+                    elevation: 2,
+                    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
                     child: Row(
                       children: [
-                        Container(
-                          height: 90.h,
-                          width: 140.w,
+                        SizedBox(
+                          height: 150.h,
+                          width: 180.w,
                           child: CachedNetworkImage(
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.cover,
                             imageUrl:
                             '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                 '',
@@ -222,7 +227,8 @@ class SearchPage extends SearchDelegate {
                   Center(
                     child: Text(
                       'No Movies Found',
-                      style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                      style:
+                          TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
                     ),
                   )
                 ],
@@ -239,15 +245,19 @@ class SearchPage extends SearchDelegate {
                                 movieId: snapshot.data!.results![index].id!),
                           );
                         },
-                        child: Container(
-                          height: 90.h,
+                        child: Card(
+                          elevation: 2,
+                          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
                           child: Row(
                             children: [
-                              Container(
-                                height: 90.h,
-                                width: 140.w,
+                              SizedBox(
+                                height: 150.h,
+                                width: 180.w,
                                 child: CachedNetworkImage(
-                                  fit: BoxFit.fitHeight,
+                                  fit: BoxFit.cover,
                                   imageUrl:
                                       '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                           '',

@@ -69,13 +69,18 @@ class MoviesByCategory extends StatelessWidget {
                                     snapshot.data!.results![index].id!),
                           );
                         },
-                        child: Container(
-                          height: 90.h,
+                        child: Card(
+                          elevation: 2,
+                          color: Colors.transparent,
+                          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
                           child: Row(
                             children: [
-                              Container(
-                                height: 90.h,
-                                width: 140.w,
+                              SizedBox(
+                                height: 150.h,
+                                width: 170.w,
                                 child: CachedNetworkImage(
                                   fit: BoxFit.cover,
                                   imageUrl:
