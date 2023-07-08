@@ -13,7 +13,7 @@ class TopRatedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      height: 187.h,
+      height: 200.h,
       color: containerColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

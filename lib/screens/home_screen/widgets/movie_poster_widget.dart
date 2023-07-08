@@ -62,7 +62,8 @@ class MoviePosterWidget extends StatelessWidget {
                 Text(
                   releaseDate,
                   style: TextStyle(fontSize: 10.sp, color: Colors.grey),
-                )
+                ),
+                SizedBox(height: 5.h),
               ],
             ),
           ),

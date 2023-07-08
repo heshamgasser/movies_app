@@ -22,7 +22,7 @@ class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize:  Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
+      designSize:  Size(412, 892),
       minTextAdapt: true,
       splitScreenMode: true,
       builder:(context, child) {

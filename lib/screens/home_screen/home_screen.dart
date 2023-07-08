@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         return ListView(
           children: [
-            HomeScreenCubit.get(context).popularResults.isEmpty ? Center(child: CircularProgressIndicator(),) : PopularMoviesWidget(),
+            HomeScreenCubit.get(context).popularResults.isEmpty ? Center(child: CircularProgressIndicator()) : PopularMoviesWidget(),
             SizedBox(height: 80.h),
             ComingSoonMovies(),
             SizedBox(height: 20.h),

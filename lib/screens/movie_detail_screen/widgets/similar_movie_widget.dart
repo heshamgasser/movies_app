@@ -32,45 +32,48 @@ class SimilarMoviesWidget extends StatelessWidget {
         }
 
         return Container(
-          height: 187.h,
+          height: 230.h,
           color: containerColor,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'More Like This',
-                style: TextStyle(color: Colors.white, fontSize: 15.sp),
-              ),
-              SizedBox(height: 5.h),
-              Expanded(
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return MoviePosterWidget(
-                        posterPath:
-                            '$IMAGE_BASE_URL${snapshot.data?.results?[index].posterPath}' ??
-                                '',
-                        voteText:
-                            '${snapshot.data?.results?[index].voteAverage}' ?? '',
-                        title: snapshot.data?.results?[index].title ?? '',
-                        releaseDate: snapshot.data?.results?[index].releaseDate ?? '',
-                        onTapped: () {
-                          Navigator.pushReplacementNamed(
-                              arguments: ArgumentModel(
-                                  movieId: snapshot.data!.results![index].id!),
-                              context,
-                              MovieDetailScreen.routeName);
-                        },
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        width: 10.w,
-                      );
-                    },
-                    itemCount: snapshot.data!.results!.length),
-              ),
-            ],
+          child: Padding(
+            padding:  EdgeInsets.only(top: 9.h, bottom: 17.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'More Like This',
+                  style: TextStyle(color: Colors.white, fontSize: 15.sp),
+                ),
+                SizedBox(height: 8.h),
+                Expanded(
+                  child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return MoviePosterWidget(
+                          posterPath:
+                              '$IMAGE_BASE_URL${snapshot.data?.results?[index].posterPath}' ??
+                                  '',
+                          voteText:
+                              '${snapshot.data?.results?[index].voteAverage}' ?? '',
+                          title: snapshot.data?.results?[index].title ?? '',
+                          releaseDate: snapshot.data?.results?[index].releaseDate ?? '',
+                          onTapped: () {
+                            Navigator.pushReplacementNamed(
+                                arguments: ArgumentModel(
+                                    movieId: snapshot.data!.results![index].id!),
+                                context,
+                                MovieDetailScreen.routeName);
+                          },
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          width: 10.w,
+                        );
+                      },
+                      itemCount: snapshot.data!.results!.length),
+                ),
+              ],
+            ),
           ),
         );
       },
