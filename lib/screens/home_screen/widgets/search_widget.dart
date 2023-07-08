@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
+import 'package:movies_app/styles/app_color.dart';
 import '../../../componant/constant.dart';
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../../../remote/api_manager.dart';
@@ -52,6 +53,7 @@ class SearchPage extends SearchDelegate {
             ],
           );
         }
+
         if (!snapshot.hasData) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +74,7 @@ class SearchPage extends SearchDelegate {
             ],
           );
         }
+
         return query.isEmpty
             ? Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -114,9 +117,10 @@ class SearchPage extends SearchDelegate {
                       children: [
                         SizedBox(
                           height: 150.h,
-                          width: 180.w,
+                          width: 120.w,
                           child: CachedNetworkImage(
-                            fit: BoxFit.cover,
+                            alignment: Alignment.centerLeft,
+                            fit: BoxFit.fitHeight,
                             imageUrl:
                             '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                 '',
@@ -193,6 +197,7 @@ class SearchPage extends SearchDelegate {
             ],
           );
         }
+
         if (!snapshot.hasData) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -213,6 +218,7 @@ class SearchPage extends SearchDelegate {
             ],
           );
         }
+
         return query.isEmpty
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -255,9 +261,10 @@ class SearchPage extends SearchDelegate {
                             children: [
                               SizedBox(
                                 height: 150.h,
-                                width: 180.w,
+                                width: 120.w,
                                 child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
+                                  alignment: Alignment.centerLeft,
+                                  fit: BoxFit.fitHeight,
                                   imageUrl:
                                       '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                           '',

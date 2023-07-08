@@ -6,6 +6,7 @@ import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
 import 'package:movies_app/screens/movie_detail_screen/movie_detail_screen.dart';
 import '../../componant/constant.dart';
 import '../../models/movie_details_similar_withArguments/argument_model.dart';
+import '../../styles/app_color.dart';
 
 class MoviesByCategory extends StatelessWidget {
   String categoryName;
@@ -71,7 +72,7 @@ class MoviesByCategory extends StatelessWidget {
                         },
                         child: Card(
                           elevation: 2,
-                          color: Colors.transparent,
+                          color: containerColor,
                           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.r),
@@ -80,9 +81,10 @@ class MoviesByCategory extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height: 150.h,
-                                width: 170.w,
+                                width: 120.w,
                                 child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
+                                  alignment: Alignment.centerLeft,
+                                  fit: BoxFit.fitHeight,
                                   imageUrl:
                                       '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath ?? ''}',
                                   progressIndicatorBuilder: (context, url,

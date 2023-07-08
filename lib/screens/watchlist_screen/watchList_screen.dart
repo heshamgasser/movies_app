@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/models/firebase_data_model.dart';
 import 'package:movies_app/shared/remote/firebase_function.dart';
+import 'package:movies_app/styles/app_color.dart';
 import '../../componant/constant.dart';
 import '../../models/movie_details_similar_withArguments/argument_model.dart';
 import '../home_screen/widgets/vote_widget.dart';
@@ -73,7 +74,7 @@ class WatchList extends StatelessWidget {
                               child: Card(
                                 elevation: 2,
                                 margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                                color: Colors.transparent,
+                                color: containerColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                 ),
@@ -81,9 +82,10 @@ class WatchList extends StatelessWidget {
                                   children: [
                                     Container(
                                       height: 150.h,
-                                      width: 170.w,
+                                      width: 120.w,
                                       child: CachedNetworkImage(
-                                        fit: BoxFit.cover,
+                                        alignment: Alignment.centerLeft,
+                                        fit: BoxFit.fitHeight,
                                         imageUrl: data[index].posterPath ??
                                             // '${IMAGE_BASE_URL}${snapshot.data?.results?[index].posterPath}' ??
                                             '',
