@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/models/SimilarMoviesModel.dart';
 import 'package:movies_app/remote/api_manager.dart';
 import '../../../componant/constant.dart';
+import '../../../models/firebase_data_model.dart';
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
+import '../../../shared/remote/firebase_function.dart';
 import '../../../styles/app_color.dart';
 import '../../home_screen/widgets/movie_poster_widget.dart';
 import '../movie_detail_screen.dart';
@@ -31,11 +34,12 @@ class SimilarMoviesWidget extends StatelessWidget {
           );
         }
 
+        List<Results> snapshotData = snapshot.data?.results ?? [];
         return Container(
           height: 230.h,
           color: containerColor,
           child: Padding(
-            padding:  EdgeInsets.only(top: 9.h, bottom: 17.h),
+            padding: EdgeInsets.only(top: 9.h, bottom: 17.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -50,18 +54,37 @@ class SimilarMoviesWidget extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return MoviePosterWidget(
                           posterPath:
-                              '$IMAGE_BASE_URL${snapshot.data?.results?[index].posterPath}' ??
+                              '$IMAGE_BASE_URL${snapshotData[index].posterPath}' ??
                                   '',
-                          voteText:
-                              '${snapshot.data?.results?[index].voteAverage}' ?? '',
-                          title: snapshot.data?.results?[index].title ?? '',
-                          releaseDate: snapshot.data?.results?[index].releaseDate ?? '',
+                          voteText: '${snapshotData[index].voteAverage}' ?? '',
+                          title: snapshotData[index].title ?? '',
+                          releaseDate: snapshotData[index].releaseDate ?? '',
                           onTapped: () {
                             Navigator.pushReplacementNamed(
                                 arguments: ArgumentModel(
-                                    movieId: snapshot.data!.results![index].id!),
+                                    movieId:
+                                        snapshot.data!.results![index].id!),
                                 context,
                                 MovieDetailScreen.routeName);
+                          },
+                          onPressed: () {
+                            FirebaseDataModel firebaseDataModel = FirebaseDataModel(
+                                id: snapshotData[index].id ?? 0,
+                                title: snapshotData[index].title ?? '',
+                                posterPath:
+                                    '$IMAGE_BASE_URL${snapshotData[index].posterPath}' ??
+                                        '',
+                                releaseDate:
+                                    snapshotData[index].releaseDate ?? '',
+                                voteCount: snapshotData[index].voteAverage ?? 0,
+                                selected: true);
+
+                            // HomeScreenCubit.get(context).selected
+                            //     ?
+                            FirebaseFunction.addMovieToWishList(
+                                    firebaseDataModel);
+                                // : FirebaseFunction.removeFromWishlist(
+                                //     snapshotData[index].id!);
                           },
                         );
                       },

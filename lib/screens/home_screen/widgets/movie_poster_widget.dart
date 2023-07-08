@@ -10,12 +10,15 @@ class MoviePosterWidget extends StatelessWidget {
   String title;
   String releaseDate;
   Function onTapped;
+  Function onPressed;
 
   MoviePosterWidget(
       {required this.posterPath,
       required this.voteText,
       required this.title,
-      required this.releaseDate, required this.onTapped});
+      required this.releaseDate,
+      required this.onTapped,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,8 @@ class MoviePosterWidget extends StatelessWidget {
                       width: double.infinity,
                       fit: BoxFit.fill,
                       imageUrl: posterPath,
-                      progressIndicatorBuilder: (context, url, downloadProgress) =>
-                          Center(
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
                         child: CircularProgressIndicator(
                             value: downloadProgress.progress),
                       ),
@@ -71,10 +74,28 @@ class MoviePosterWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.zero,
           margin: EdgeInsets.zero,
-          width: 27.w ,
+          width: 27.w,
           height: 36.h,
-          child: Icon(Icons.bookmark_add, color: Color(0xFF514F4F).withOpacity(.87), size: 36.h,),
+          child: IconButton(
+              onPressed: () {
+                onPressed();
+              },
+              icon:
+                  // HomeScreenCubit.get(context).selected ?
+                  Icon(
+                Icons.bookmark_added_rounded,
+                color: Color(0xFFF7B539).withOpacity(.87),
+                size: 36.h,
+              )
+              // : Icon(
+              //     Icons.bookmark_add_rounded,
+              //     color: Color(0xFF514F4F).withOpacity(.87),
+              //     size: 36.h,
+              ),
         ),
+
+        // Icon(Icons.bookmark_add, color: Color(0xFF514F4F).withOpacity(.87), size: 36.h,),
+        // ),
       ],
     );
   }
