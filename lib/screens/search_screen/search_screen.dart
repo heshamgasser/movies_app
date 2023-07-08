@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/provider/search_provider.dart';
+import 'package:movies_app/screens/home_screen/widgets/search_widget.dart';
 import 'package:movies_app/screens/search_screen/widgets/search_text_form_field.dart';
 import 'package:provider/provider.dart';
 import '../../componant/constant.dart';
@@ -13,7 +14,38 @@ import '../movie_detail_screen/movie_detail_screen.dart';
 class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Column(
+          children: [
+            Icon(
+              Icons.local_movies,
+              size: 100.w,
+              color: Color(0xFFB5B4B4),
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              'No Movies Found',
+              style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+            )
+          ],
+        ),
+        IconButton(
+            onPressed: () => showSearch(
+                  context: context,
+                  delegate: SearchPage(),
+                ),
+            icon: Icon(
+              Icons.search,
+              size: 30.r,
+              color: Colors.white,
+            ))
+      ],
+    );
+
+    ChangeNotifierProvider(
       create: (context) => SearchProvider(),
       builder: (context, child) {
         var pro = Provider.of<SearchProvider>(context);
@@ -93,7 +125,7 @@ class SearchScreen extends StatelessWidget {
                                       MovieDetailScreen.routeName,
                                       arguments: ArgumentModel(
                                           movieId: snapshot
-                                                  .data!.results![index].id!),
+                                              .data!.results![index].id!),
                                     );
                                   },
                                   child: Container(

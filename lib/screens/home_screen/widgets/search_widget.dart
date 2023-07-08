@@ -2,11 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/screens/home_screen/widgets/vote_widget.dart';
-import 'package:provider/provider.dart';
-
 import '../../../componant/constant.dart';
 import '../../../models/movie_details_similar_withArguments/argument_model.dart';
-import '../../../provider/search_provider.dart';
 import '../../../remote/api_manager.dart';
 import '../../movie_detail_screen/movie_detail_screen.dart';
 
@@ -19,7 +16,6 @@ class SearchPage extends SearchDelegate {
         icon: Icon(
           Icons.search,
           size: 30.r,
-          color: Colors.white,
         ),
       ),
     ];
@@ -34,7 +30,6 @@ class SearchPage extends SearchDelegate {
       icon: Icon(
         Icons.close,
         size: 30.r,
-        color: Colors.white,
       ),
     );
   }
@@ -59,6 +54,8 @@ class SearchPage extends SearchDelegate {
         }
         if (!snapshot.hasData) {
           return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Icon(
                 Icons.local_movies,
@@ -66,15 +63,19 @@ class SearchPage extends SearchDelegate {
                 color: Color(0xFFB5B4B4),
               ),
               SizedBox(height: 10.h),
-              Text(
-                'No Movies Found',
-                style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+              Center(
+                child: Text(
+                  'No Movies Found',
+                  style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                ),
               )
             ],
           );
         }
         return query.isEmpty
             ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Icon(
                     Icons.local_movies,
@@ -82,9 +83,11 @@ class SearchPage extends SearchDelegate {
                     color: Color(0xFFB5B4B4),
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    'No Movies Found',
-                    style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                  Center(
+                    child: Text(
+                      'No Movies Found',
+                      style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                    ),
                   )
                 ],
               )
@@ -187,6 +190,8 @@ class SearchPage extends SearchDelegate {
         }
         if (!snapshot.hasData) {
           return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Icon(
                 Icons.local_movies,
@@ -194,15 +199,19 @@ class SearchPage extends SearchDelegate {
                 color: Color(0xFFB5B4B4),
               ),
               SizedBox(height: 10.h),
-              Text(
-                'No Movies Found',
-                style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+              Center(
+                child: Text(
+                  'No Movies Found',
+                  style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                ),
               )
             ],
           );
         }
         return query.isEmpty
             ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Icon(
                     Icons.local_movies,
@@ -210,9 +219,11 @@ class SearchPage extends SearchDelegate {
                     color: Color(0xFFB5B4B4),
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    'No Movies Found',
-                    style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                  Center(
+                    child: Text(
+                      'No Movies Found',
+                      style: TextStyle(color: Color(0xFFB5B4B4), fontSize: 13.sp),
+                    ),
                   )
                 ],
               )
