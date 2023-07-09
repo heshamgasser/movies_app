@@ -28,5 +28,16 @@ class FirebaseFunction {
   static Future<void> removeFromWishlist (num id){
    return createCollection().doc('$id').delete();
   }
+
+
+  static Future<bool> checkId (num id) async{
+    var collectionRef = await createCollection();
+    var data = await collectionRef.doc('$id').get();
+   if (data.exists){
+     return true;
+   } else {
+     return false;
+   }
+  }
 }
 
