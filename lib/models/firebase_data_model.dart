@@ -4,7 +4,7 @@ class FirebaseDataModel {
   String posterPath;
   String releaseDate;
   num voteCount;
-  bool selected;
+  // bool selected;
 
 
 
@@ -18,7 +18,8 @@ class FirebaseDataModel {
     required this.posterPath,
     required this.releaseDate,
     required this.voteCount,
-    required this.selected});
+    // required this.selected
+  });
 
   FirebaseDataModel.fromJson(Map<String, dynamic> json)
       : this(
@@ -27,7 +28,7 @@ class FirebaseDataModel {
     posterPath: json['posterPath'],
     releaseDate: json['releaseDate'],
     voteCount: json['voteCount'],
-    selected: json['selected'],
+    // selected: json['selected'],
   );
 
   Map <String, dynamic> toJson() {
@@ -37,7 +38,7 @@ class FirebaseDataModel {
       'posterPath': posterPath,
       'releaseDate': releaseDate,
       'voteCount': voteCount,
-      'selected': selected,
+      // 'selected': selected,
     };
   }
 

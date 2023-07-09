@@ -72,7 +72,8 @@ class TopRatedWidget extends StatelessWidget {
                               voteCount: HomeScreenCubit.get(context)
                                   .topRatedResult[index]
                                   .voteAverage,
-                              selected: HomeScreenCubit.get(context).selected ? true : false);
+                              // selected: HomeScreenCubit.get(context).selected ? true : false
+                          );
 
                           // HomeScreenCubit.get(context).selected
                           //     ?

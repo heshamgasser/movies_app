@@ -77,7 +77,8 @@ class SimilarMoviesWidget extends StatelessWidget {
                                 releaseDate:
                                     snapshotData[index].releaseDate ?? '',
                                 voteCount: snapshotData[index].voteAverage ?? 0,
-                                selected: true);
+                                // selected: true
+                            );
 
                             // HomeScreenCubit.get(context).selected
                             //     ?

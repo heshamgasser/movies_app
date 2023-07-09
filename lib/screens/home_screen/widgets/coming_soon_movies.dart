@@ -76,7 +76,8 @@ class ComingSoonMovies extends StatelessWidget {
                               voteCount: HomeScreenCubit.get(context)
                                   .comingSoonResult[index]
                                   .voteAverage,
-                              selected: HomeScreenCubit.get(context).selected ? true : false);
+                              // selected: HomeScreenCubit.get(context).selected ? true : false
+                          );
 
                           // HomeScreenCubit.get(context).selected
                           //     ?
